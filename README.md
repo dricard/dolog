@@ -1,6 +1,6 @@
 # DOLOG Script for Alfred.app
 
-[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)  [![Twitter](https://img.shields.io/badge/twitter-@hexaedre-blue.svg?style=flat)](https://twitter.com/hexaedre)
+[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)  [![Twitter](https://img.shields.io/badge/twitter-@hexaedre-blue.svg?style=flat)](https://twitter.com/hexaedre)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **DOLOG** is a script, written in **Swift**, that is used in an [Alfred][alfred] / [workflow][workflows].
 
@@ -18,14 +18,14 @@ You need a few things to make use of this script:
 
 - you need the latest version of [Day One 2][dayone]
 - you must have installed the Day One CLI: menu `/Day One/Install Command Line Tools.../` and follow the instructions.
-- you need to have [Aldred](alfred) installed, with a [PowerPack][powerpack] license (required to use [workflows][workflows])
+- you need to have [Aldred][alfred] installed, with a [PowerPack][powerpack] license (required to use [workflows][workflows])
 
 ##### Installation
 
-- download and unzip the [dolog][dolog] package.
-- double-click the `.workflow` file to install the workflow in Alfred.
+- download and unzip the `dolog` package.
+- double-click the `.alfredworkflow` file to install the workflow in Alfred.
 - open the workflow and double-click the `external script` module.
-- click the `open workflow folder in finder` button to the left of the `cancel`button.
+- click the `open workflow folder in finder` button to the left of the `cancel`button. ![button](http://hexaedre.com/resources/alfredOpenFolder.png)
 - copy the `DayOneLoggerPlus` file from the `dolog` package to the workflow folder.
 - you can close the workflow folder and Alfred's preferences window.
 - you're good to go!
@@ -62,7 +62,7 @@ You can modify for example the default journal to log into, the default tags, et
 
 #### License
 
-On the Map is Copyright © 2017 Denis Ricard. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+Dolog is Copyright © 2017 Denis Ricard. It is free software, and may be redistributed under the terms specified in the LICENSE file.
 
 #### About
 

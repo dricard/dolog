@@ -60,6 +60,32 @@ This script is made for **Swift 3.0**. It has not been tested with Swift 2.0.
 
 You can modify for example the default journal to log into, the default tags, etc. by modifying the script in the included `DayOneLoggerPlus.swift` file. You must then compile the script and make it executable and put it in the workflow folder.
 
+#### How to contribute
+
+I'm always happy to improve my code and learn, so if you find things to improve please submit a pull request.
+
+##### Here are some ways you can contribute:
+
+* by reporting bugs
+* by writing or editing documentation
+* by writing code ( no patch is too small : fix typos, add comments, clean up * inconsistent whitespace )
+* by refactoring code
+* by closing issues
+* by reviewing patches
+* Submitting an Issue
+
+I use the GitHub issue tracker to track bugs and features. Before submitting a bug report or feature request, check to make sure it hasn't already been submitted.
+
+##### Submitting a Pull Request
+
+1. Fork the repository.
+1. Create a topic branch.
+1. Implement your feature or bug fix.
+1. Add, commit, and push your changes.
+1. Submit a pull request.
+
+This is based on [https://github.com/middleman/middleman-heroku/blob/master/CONTRIBUTING.md](https://github.com/middleman/middleman-heroku/blob/master/CONTRIBUTING.md)
+
 #### License
 
 Dolog is Copyright © 2017 Denis Ricard. It is free software, and may be redistributed under the terms specified in the LICENSE file.

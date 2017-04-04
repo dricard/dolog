@@ -11,8 +11,11 @@
 
 
 //-- get parameter input
+// `argument` holds the text entered in Alfred by the user
+// I initialize it with an example of something the user could enter
+// for testing. 
 
-var argument = ""
+var argument = "-t workflow @ Switched to Mailmate as my email client"
 #if swift(>=3.0)
 	if CommandLine.arguments.count > 1 {
 		argument = CommandLine.arguments[1]
@@ -30,13 +33,13 @@ import Foundation
 
 // MARK: - Properties
 
-// task will hold the completed task passed in
+// variable task will hold the completed task passed in
 
 var task  = ""
 
-// The result of the script that will be passed to the CLI, we initialize it with the
-// Day One CLI command setting the journal to 'log' and adding two default tags
-// 'dolog' and 'completed tasks'
+// `outputString` is the result of the script that will be passed to the CLI, 
+// we initialize it with the Day One CLI command setting the journal to 'log' 
+// and adding two default tags 'dolog' and 'completed tasks'
 
 var outputString: String = "dayone2 --journal log --tags dolog completed\\ tasks "
 
@@ -63,7 +66,7 @@ if weHaveTags {
 		
 		// Now process the task part to remove the end of tags marker
 		
-		// get the task part of the inpu
+		// get the task part of the input
 		
 		let taskSection = String(argument.characters.suffix(from: endOfTags))
 		
@@ -79,7 +82,9 @@ if weHaveTags {
 		
 		task = String(taskSection.characters.suffix(from: tagIndex))
 		
+		// Now we have the task, we then process and format the tags
 		// Add the tags to the output string separated by spaces
+		// skipping the first one which is the `-t` marker
 			
 		for i in 1..<tags.count {
 			

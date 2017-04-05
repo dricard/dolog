@@ -1,8 +1,31 @@
 #!/usr/bin/env xcrun swift
 
+import Foundation
+
 /* *********************************
-	 DOLOG Script for Alfred App
+	 		DOLOG Script
    ********************************* */
+
+
+/* *********************************
+	 MODIFY THESE 3 PROPERTIES
+	         AS NEEDED
+********************************* */
+
+// the journal to log to in Day One
+
+let dayOneJournal = "log"
+
+// the default tag(s) to add to all entries. If you don't
+// add any default tag, you'll have to modify the code below
+
+let defaultTags = ["dolog", "completed tasks"]
+
+// the entry prefix
+
+let entryPrefix = "completed task:"
+
+/* ********************************* */
 
 
 // requires Swift 3.0
@@ -15,7 +38,7 @@
 // I initialize it with an example of something the user could enter
 // for testing. 
 
-var argument = "-t workflow @ Switched to Mailmate as my email client"
+var argument = "-t workflow@Switched to Mailmate as my email client"
 #if swift(>=3.0)
 	if CommandLine.arguments.count > 1 {
 		argument = CommandLine.arguments[1]
@@ -25,15 +48,13 @@ var argument = "-t workflow @ Switched to Mailmate as my email client"
 		argument = Process.arguments[1]
 	}
 #elseif swift(>=1.0)
-	print("Unsupported version of Swift (<= 2.0) please update to Swift 2.0 or above (Swift 3 supported)!")
+	print("Unsupported version of Swift (<= 2.0) please update to Swift 3.0")
 	break
 #endif
 
-import Foundation
-
 // MARK: - Properties
 
-// variable task will hold the completed task passed in
+// variable 'task' will hold the completed task passed in
 
 var task  = ""
 
@@ -41,7 +62,15 @@ var task  = ""
 // we initialize it with the Day One CLI command setting the journal to 'log' 
 // and adding two default tags 'dolog' and 'completed tasks'
 
-var outputString: String = "dayone2 --journal log --tags dolog completed\\ tasks "
+var outputString: String = "dayone2 --journal "
+
+// add journal name
+outputString += dayOneJournal + " --tags "
+
+for defaulTag in defaultTags {
+	let tag = defaulTag.replacingOccurrences(of: " ", with: "\\ ")
+	outputString += tag + " "
+}
 
 // MARK: - Process input
 
@@ -114,7 +143,7 @@ if weHaveTags {
 
 // Add the task to the output string (enclosed in quotes to prevent the CLI to interpret special characters)
 
-outputString += " -- new completed: \"" + task + "\""
+outputString += " -- new" + " \"" + entryPrefix + " " + task + "\""
 
 // pass the result of the script, we suppress the newline character in the output
 

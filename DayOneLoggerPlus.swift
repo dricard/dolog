@@ -17,7 +17,8 @@ import Foundation
 let dayOneJournal = "log"
 
 // the default tag(s) to add to all entries. If you don't
-// add any default tag, you'll have to modify the code below
+// add at least one default tag, you'll have to modify the code below.
+// tags *can* have spaces
 
 let defaultTags = ["dolog", "completed tasks"]
 
@@ -59,12 +60,13 @@ var argument = "-t workflow@Switched to Mailmate as my email client"
 var task  = ""
 
 // `outputString` is the result of the script that will be passed to the CLI, 
-// we initialize it with the Day One CLI command setting the journal to 'log' 
-// and adding two default tags 'dolog' and 'completed tasks'
+// we initialize it with the Day One CLI command, setting the default journal
+// and the default tags.
 
 var outputString: String = "dayone2 --journal "
 
-// add journal name
+// add journal name and default tags
+
 outputString += dayOneJournal + " --tags "
 
 for defaulTag in defaultTags {

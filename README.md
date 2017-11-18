@@ -1,6 +1,6 @@
 # DOLOG Script for Alfred.app
 
-[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)  [![Twitter](https://img.shields.io/badge/twitter-@hexaedre-blue.svg?style=flat)](https://twitter.com/hexaedre)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](https://developer.apple.com/swift/)  [![Twitter](https://img.shields.io/badge/twitter-@hexaedre-blue.svg?style=flat)](https://twitter.com/hexaedre)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **DOLOG** is a script, written in **Swift**, that is used in an [Alfred][alfred] / [workflow][workflows].
 
@@ -54,7 +54,7 @@ All entries will have the `completed tasks` and the `dolog` tags added by defaul
 
 #### Swift version
 
-This script is made for **Swift 3.0**. It has not been tested with Swift 2.0.
+This script is made for **Swift 4.0**.
 
 #### Modifying the script
 

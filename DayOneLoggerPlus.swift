@@ -41,6 +41,9 @@ let entryPrefix = "completed task:"
 
 var argument = "-t workflow @Switched to Mailmate as my email client"
 #if swift(>=4.0)
+	if CommandLine.arguments.count > 1 {
+		argument = CommandLine.arguments[1]
+	}
 #elseif swift(>=1.0)
 	print("Unsupported version of Swift (<= 4.0) please update to Swift 4.0")
 	break

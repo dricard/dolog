@@ -30,9 +30,6 @@ let entryPrefix = "completed task:"
 
 
 // requires Swift 4.0
-// might work with Swift 2.0 but is untested
-// Will not work with Swift 1.0
-
 
 //-- get parameter input
 // `argument` holds the text entered in Alfred by the user
@@ -49,6 +46,41 @@ var argument = "-t workflow @Switched to Mailmate as my email client"
 	break
 #endif
 
+// MARK: - Utilities
+
+func replaceSpaces(in tag: String) -> String {
+	return tag.replacingOccurrences(of: "_", with: "\\ ")
+}
+
+func removeSpecialCharacters(in tag: String) -> String {
+	// escape special characters
+	// ! ? $ % # & * ( ) blank tab | ' ; " < > \ ~ ` [ ] { }
+	var returnedTag = tag
+	returnedTag = returnedTag.replacingOccurrences(of: "!", with: "\\!")
+	returnedTag = returnedTag.replacingOccurrences(of: "?", with: "\\?")
+	returnedTag = returnedTag.replacingOccurrences(of: "$", with: "\\$")
+	returnedTag = returnedTag.replacingOccurrences(of: "%", with: "\\%")
+	returnedTag = returnedTag.replacingOccurrences(of: "#", with: "\\#")
+	returnedTag = returnedTag.replacingOccurrences(of: "&", with: "\\&")
+	returnedTag = returnedTag.replacingOccurrences(of: "*", with: "\\*")
+	returnedTag = returnedTag.replacingOccurrences(of: "(", with: "\\(")
+	returnedTag = returnedTag.replacingOccurrences(of: ")", with: "\\)")
+	returnedTag = returnedTag.replacingOccurrences(of: "|", with: "\\|")
+	returnedTag = returnedTag.replacingOccurrences(of: "'", with: "\\'")
+	returnedTag = returnedTag.replacingOccurrences(of: ";", with: "\\;")
+	returnedTag = returnedTag.replacingOccurrences(of: "<", with: "\\<")
+	returnedTag = returnedTag.replacingOccurrences(of: ">", with: "\\>")
+	returnedTag = returnedTag.replacingOccurrences(of: "\\", with: "\\\\")
+	returnedTag = returnedTag.replacingOccurrences(of: "~", with: "\\~")
+	returnedTag = returnedTag.replacingOccurrences(of: "`", with: "\\`")
+	returnedTag = returnedTag.replacingOccurrences(of: "[", with: "\\[")
+	returnedTag = returnedTag.replacingOccurrences(of: "]", with: "\\]")
+	returnedTag = returnedTag.replacingOccurrences(of: "{", with: "\\{")
+	returnedTag = returnedTag.replacingOccurrences(of: "}", with: "\\}")
+
+	return returnedTag
+}
+
 // MARK: - Properties
 
 // variable 'task' will hold the completed task passed in
@@ -59,7 +91,9 @@ var task  = ""
 // we initialize it with the Day One CLI command, setting the default journal
 // and the default tags.
 
-var outputString: String = "dayone2 --journal "
+var outputString = "dayone2 --journal "
+
+// MARK: - Process
 
 // add journal name and default tags
 
@@ -72,15 +106,9 @@ for defaulTag in defaultTags {
 
 // MARK: - Process input
 
-//-- Test if tags are present
-
-// weHaveTags is true if there are tags present
-
-let weHaveTags = argument.hasPrefix("-t")
-
 //-- Process tags if present, otherwise just pass the input
 
-if weHaveTags {
+if argument.hasPrefix("-t") {
 	
 	// find the index of the tags separator
 	
@@ -113,41 +141,17 @@ if weHaveTags {
 		// Add the tags to the output string separated by spaces
 		// skipping the first one which is the `-t` marker
 			
-		for i in 1..<tags.count {
+		for tag in tags.dropFirst() {
 			
 			// first we process underscores (_) in tags to replace them with escaped spaces so they're
 			// treated as a single tag
 			
-			var tag = tags[i].replacingOccurrences(of: "_", with: "\\ ")
-			
-			// escape special characters
-			// ! ? $ % # & * ( ) blank tab | ' ; " < > \ ~ ` [ ] { }
-				
-			tag = tags[i].replacingOccurrences(of: "!", with: "\\!")
-			tag = tags[i].replacingOccurrences(of: "?", with: "\\?")
-			tag = tags[i].replacingOccurrences(of: "$", with: "\\$")
-			tag = tags[i].replacingOccurrences(of: "%", with: "\\%")
-			tag = tags[i].replacingOccurrences(of: "#", with: "\\#")
-			tag = tags[i].replacingOccurrences(of: "&", with: "\\&")
-			tag = tags[i].replacingOccurrences(of: "*", with: "\\*")
-			tag = tags[i].replacingOccurrences(of: "(", with: "\\(")
-			tag = tags[i].replacingOccurrences(of: ")", with: "\\)")
-			tag = tags[i].replacingOccurrences(of: "|", with: "\\|")
-			tag = tags[i].replacingOccurrences(of: "'", with: "\\'")
-			tag = tags[i].replacingOccurrences(of: ";", with: "\\;")
-			tag = tags[i].replacingOccurrences(of: "<", with: "\\<")
-			tag = tags[i].replacingOccurrences(of: ">", with: "\\>")
-			tag = tags[i].replacingOccurrences(of: "\\", with: "\\\\")
-			tag = tags[i].replacingOccurrences(of: "~", with: "\\~")
-			tag = tags[i].replacingOccurrences(of: "`", with: "\\`")
-			tag = tags[i].replacingOccurrences(of: "[", with: "\\[")
-			tag = tags[i].replacingOccurrences(of: "]", with: "\\]")
-			tag = tags[i].replacingOccurrences(of: "{", with: "\\{")
-			tag = tags[i].replacingOccurrences(of: "}", with: "\\}")
+			var processedTag = replaceSpaces(in: tag)
+			processedTag = removeSpecialCharacters(in: processedTag)
 
 			// add this processed tag to the output string
 			
-			outputString += tag + " "
+			outputString += processedTag + " "
 		}
 	} else {
 

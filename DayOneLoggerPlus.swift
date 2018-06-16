@@ -13,6 +13,7 @@ import Foundation
 ********************************* */
 
 // the journal to log to in Day One
+// To use two words insert \\ after the first word, eg: "Daily\\ Log"
 
 let dayOneJournal = "log"
 

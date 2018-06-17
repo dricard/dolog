@@ -18,7 +18,7 @@ You need a few things to make use of this script:
 
 - you need the latest version of [Day One 2][dayone]
 - you must have installed the Day One CLI: menu `/Day One/Install Command Line Tools.../` and follow the instructions.
-- you need to have [Aldred][alfred] installed, with a [PowerPack][powerpack] license (required to use [workflows][workflows])
+- you need to have [Alfred][alfred] installed, with a [PowerPack][powerpack] license (required to use [workflows][workflows])
 
 ##### Installation
 

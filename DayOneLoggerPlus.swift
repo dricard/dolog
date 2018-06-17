@@ -8,7 +8,7 @@ import Foundation
 
 
 /* *********************************
-	 MODIFY THESE 3 PROPERTIES
+	 MODIFY THESE PROPERTIES
 	         AS NEEDED
 ********************************* */
 
@@ -25,6 +25,12 @@ let defaultTags = ["dolog", "completed tasks"]
 // the entry prefix
 
 let entryPrefix = "completed task:"
+
+// Set this to true to quit Terminal after the script runs
+// Change "iTerm" to "Terminal" or whatever you use as a replacement to Terminal
+
+let closeTerminal = true
+let terminal = "iTerm"
 
 /* ********************************* */
 

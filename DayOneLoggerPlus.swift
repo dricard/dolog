@@ -27,11 +27,6 @@ let defaultTags = ["dolog", "completed tasks"]
 
 let entryPrefix = "completed task:"
 
-// Set this to true to quit Terminal after the script runs
-// Change "iTerm" to "Terminal" or whatever you use as a replacement to Terminal
-
-let closeTerminal = true
-let terminal = "iTerm"
 
 /* ********************************* */
 
@@ -53,38 +48,25 @@ var argument = "-t workflow @Switched to Mailmate as my email client"
 	break
 #endif
 
+let charactersToEscape = [ "!", "?", "$", "%", "#", "&", "*", "(", ")", "|", "'", ";", "<", ">", "\\", "~", "`", "[", "]", "{", "}" ]
+
 // MARK: - Utilities
 
 func replaceSpaces(in tag: String) -> String {
 	return tag.replacingOccurrences(of: "_", with: "\\ ")
 }
 
+func escape(_ character: String, in tag: String) -> String {
+	return tag.replacingOccurrences(of: character, with: "\\\(character)")
+}
+
 func removeSpecialCharacters(in tag: String) -> String {
 	// escape special characters
-	// ! ? $ % # & * ( ) blank tab | ' ; " < > \ ~ ` [ ] { }
+	// ! ? $ % # & * ( ) |  ; < > \ ~ ` [ ] { }
 	var returnedTag = tag
-	returnedTag = returnedTag.replacingOccurrences(of: "!", with: "\\!")
-	returnedTag = returnedTag.replacingOccurrences(of: "?", with: "\\?")
-	returnedTag = returnedTag.replacingOccurrences(of: "$", with: "\\$")
-	returnedTag = returnedTag.replacingOccurrences(of: "%", with: "\\%")
-	returnedTag = returnedTag.replacingOccurrences(of: "#", with: "\\#")
-	returnedTag = returnedTag.replacingOccurrences(of: "&", with: "\\&")
-	returnedTag = returnedTag.replacingOccurrences(of: "*", with: "\\*")
-	returnedTag = returnedTag.replacingOccurrences(of: "(", with: "\\(")
-	returnedTag = returnedTag.replacingOccurrences(of: ")", with: "\\)")
-	returnedTag = returnedTag.replacingOccurrences(of: "|", with: "\\|")
-	returnedTag = returnedTag.replacingOccurrences(of: "'", with: "\\'")
-	returnedTag = returnedTag.replacingOccurrences(of: ";", with: "\\;")
-	returnedTag = returnedTag.replacingOccurrences(of: "<", with: "\\<")
-	returnedTag = returnedTag.replacingOccurrences(of: ">", with: "\\>")
-	returnedTag = returnedTag.replacingOccurrences(of: "\\", with: "\\\\")
-	returnedTag = returnedTag.replacingOccurrences(of: "~", with: "\\~")
-	returnedTag = returnedTag.replacingOccurrences(of: "`", with: "\\`")
-	returnedTag = returnedTag.replacingOccurrences(of: "[", with: "\\[")
-	returnedTag = returnedTag.replacingOccurrences(of: "]", with: "\\]")
-	returnedTag = returnedTag.replacingOccurrences(of: "{", with: "\\{")
-	returnedTag = returnedTag.replacingOccurrences(of: "}", with: "\\}")
-
+	for character in charactersToEscape {
+		returnedTag = escape(character, in: returnedTag)
+	}
 	return returnedTag
 }
 
